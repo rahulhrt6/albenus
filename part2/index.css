@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    background-color: salmon;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+.left-div{
+    background-color:rgb(97, 97, 231);
+    height: 80vh;
+    width: 80vw;
+
+    margin-left: 20px;
+}
+.left-div h1{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #ffff;
+    font-family: sans-serif;
+}
+.btn{
+        background:#ffff;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        display: block;
+        width: 40%;
+        padding: 15px 0;
+        margin-top: 20px;
+        margin-left: 30px;
+        font-family: sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        color:black;
+
+    }
+.info p{
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    font-size: 15px;
+    font-weight: lighter;
+    color: #ffff;
+    font-family: sans-serif;
+}
+.right-div{
+    background-color:#ffff;
+    height: 80vh;
+    width: 80vw;
+
+    margin-right: 20px;
+}
+.right-div h1{
+    text-align: center;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: blue;
+    padding: 10px;
+}
+.form-control{
+  padding: 10px;
+}
+.form-control label{
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.form-control input{
+  border: 2px solid #f0f0f0;
+  padding: 12px;
+  border-radius: 5px;
+}
+.form-control input:focus {
+  outline: 0;
+  border-color: #777;
+}
+.form-control.success input {
+  border-color: #2ecc71;
+}
+.form-control.error input {
+  border-color: #e74c3c;
+}
+.form-control i {
+  position: absolute;
+  visibility: hidden;
+}
+.form-control.success i.fa-check-circle {
+  color: #2ecc71;
+  visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+  color: #e74c3c;
+  visibility: visible;
+}
+.form-control small {
+  color: #e74c3c;
+  position: absolute;
+  left: 0;
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
+}

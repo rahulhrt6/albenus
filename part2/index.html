@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="main">
+        <div class="left-div">
+            <h1>INFORMATION</h1>
+            <div class="info">
+
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing
+                    and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since
+                    the 1500s, when an unknown printer took a galley
+                    of type and scrambled it to make a type specimen book.
+                    It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially
+                    unchanged.
+                    It was popularised in the 1960s with the release of Letraset
+                    sheets containing Lorem Ipsum passages, and
+                    more recently with desktop publishing software
+                    like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+                <input type="submit" value="Submit" class="btn" name="">
+            </div>
+        </div>
+        <div class="right-div">
+            <h1>REGISTRATION</h1>
+          <form class="form" id="form">
+            <div class="form-control">
+                <label>First Name</label>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <input type="text" id="firstname" placeholder="Enter the First Name">
+                <label>Last Name</label>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <input type="text" id="lastname" placeholder="Enter the Last Name">
+            </div>
+            <div class="form-control">
+                <label>Your mail</label>
+                <input type="email" id="email" placeholder="Enter the email">
+            </div>
+            <div class="form-control">
+                <label>Password</label>
+                <input type="Password" name="" id="password" placeholder="Enter your Password">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error Msg</small>
+                <label>Confirm Password</label>
+                <input type="Password" name="" id="cpassword" placeholder="Enter your Password again">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error Msg</small>
+            </div>
+            <div class="form-control">
+
+				<label class="container"><p>I agree to the <a href="#" class="text">Terms and Conditions</a></p>
+	  	                <input type="checkbox" name="checkbox">
+					  	<span class="checkmark"></span>
+				</label>
+
+			<div class="form-control">
+    	          <input type="submit" name="register" class="register" value="Register">
+	         </div>
+          </form>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    const form = document.getElementById('form');
+    const firstname = document.getElementById('firstname');
+    const lastname = document.getElementById('lasttname');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const cpassword = document.getElementById('cpassword');
+
+    //add event
+    form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            validate();
+        })
+        const sendData = (firstname, sRate, count) => {
+            if (sRate === count) {
+                alert('registration successfull ');
+                swal("Welcome! " + firstname, "Registration Successful", "success");
+                //location.href = `demo.html?username=${firstnameVal}`;
+            }
+        }
+        //for final data validation
+        const successMsg = (firstname) => {
+            let formCon = document.getElementsByClassName('form-control');
+            var count = formCon.length - 1;
+            for (var i = 0; i < formCon.length; i++) {
+                if (formCon[i].className === "form-control success") {
+                    var sRate = 0 + i;
+                    console.log(sRate);
+                    sendData(firstname, sRate, count);
+                } else {
+                    return false;
+                }
+            }
+        }
+    // more email validate
+            const isEmail = (emailVal) => {
+            var atSymbol = emailVal.indexOf("@");
+            if (atSymbol < 1) return false;
+            var dot = emailVal.lastIndexOf('.');
+            if (dot <= atSymbol + 2) return false;
+            if (dot === emailVal.length - 1) return false;
+            return true;
+        }
+    // define the validate function
+    const validate = () => {
+    const firstnameVal = firstname.value.trim();
+    const lastnameVal = lasttname.value.trim();
+    const emailVal = email.value.trim();
+    const passwordVal = password.value.trim();
+    const cpasswordVal = cpassword.value.trim();
+    // validate username
+            if (firstnameVal === "") {
+                setErrorMsg(firstname, 'firstname cannot be blank');
+            } else if (firstnameVal.length <= 2) {
+                setErrorMsg(firstname, 'firstname min 3 char');
+            } else {
+                setSuccessMsg(firstname);
+            }
+            if (lastnameVal === "") {
+                setErrorMsg(lastname, 'lastname cannot be blank');
+            } else if (lastnameVal.length <= 2) {
+                setErrorMsg(lastname, 'lastname min 3 char');
+            } else {
+                setSuccessMsg(lastname);
+            }
+            // validate email
+            if (emailVal === "") {
+                setErrorMsg(email, 'email cannot be blank');
+            } else if (!isEmail(emailVal)) {
+                setErrorMsg(email, 'Not a valid Email');
+            } else {
+                setSuccessMsg(email);
+            }
+            // validate password
+            if (passwordVal === "") {
+                setErrorMsg(password, 'password cannot be blank');
+            } else if (passwordVal.length <= 5) {
+                setErrorMsg(password, 'Minimum 6 char');
+            } else {
+                setSuccessMsg(password);
+            }
+            // validate cpassword
+            if (cpasswordVal === "") {
+                setErrorMsg(cpassword, 'confirm password cannot be blank');
+            } else if (passwordVal !== cpasswordVal) {
+                setErrorMsg(cpassword, 'password are not matching');
+            } else {
+                setSuccessMsg(cpassword);
+            }
+            successMsg(firstname);
+
+        }
+        function setErrorMsg(input, errormsgs) {
+            const formControl = input.parentElement;
+            const small = formControl.querySelector('small');
+            formControl.className = "form-control error";
+            small.innerText = errormsgs;
+        }
+
+        function setSuccessMsg(input) {
+            const formControl = input.parentElement;
+            formControl.className = "form-control success";
+        }
+
+    </script>
+
+</body>
+</html>
